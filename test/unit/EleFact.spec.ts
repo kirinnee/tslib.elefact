@@ -55,4 +55,53 @@ describe("EleFact", () => {
 		});
 		
 	});
+	
+	describe("DIV", () => {
+		
+		it("should properly assign ID", () => {
+			let eleClean = eleFact.DIV({id: "id-1"});
+			let eleClass = eleFact.DIV({id: "id-2", cls: "blue"});
+			let eleHTML = eleFact.DIV({id: "id-3", html: "some text"});
+			eleClean.getAttribute("id")!.should.deep.equal('id-1');
+			eleClass.getAttribute("id")!.should.deep.equal('id-2');
+			eleHTML.getAttribute("id")!.should.deep.equal('id-3');
+			
+			eleClean.tagName.should.deep.equal('DIV');
+			eleClass.tagName.should.deep.equal('DIV');
+			eleHTML.tagName.should.deep.equal('DIV');
+			
+			
+		});
+		
+		it("should properly assign class", () => {
+			let assignSingle = eleFact.DIV({cls: "blue"});
+			let assignMany = eleFact.DIV({cls: ["blue", "green", "red"]});
+			
+			assignSingle.classList.contains("blue").should.be.true;
+			assignSingle.classList.contains("green").should.be.false;
+			assignSingle.classList.contains("red").should.be.false;
+			assignMany.classList.contains("blue").should.be.true;
+			assignMany.classList.contains("green").should.be.true;
+			assignMany.classList.contains("red").should.be.true;
+			assignSingle.tagName.should.be.equal("DIV");
+			assignMany.tagName.should.be.equal("DIV");
+			
+		});
+		
+		it("should properly assign inner HTML", () => {
+			let innerHTML = eleFact.DIV({html: "some text"});
+			let withID = eleFact.DIV({html: "some text 2", id: "id-1"});
+			let withClass = eleFact.DIV({html: "some text 3", cls: "blue"});
+			
+			innerHTML.innerHTML.should.deep.equal("some text");
+			withID.innerHTML.should.deep.equal("some text 2");
+			withClass.innerHTML.should.deep.equal("some text 3");
+			
+			innerHTML.tagName.should.be.equal("DIV");
+			withID.tagName.should.be.equal("DIV");
+			withClass.tagName.should.be.equal("DIV");
+			
+		});
+	});
+	
 });

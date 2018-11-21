@@ -14,7 +14,7 @@ class EleFact implements ElementFactory {
 	}
 	
 	DIV(data: ElementData = {}): HTMLElement {
-		throw new Error("Not Implemented");
+		return this.ELE("div", data);
 	}
 	
 	ELE(type: string, data: ElementData = {}): HTMLElement {
