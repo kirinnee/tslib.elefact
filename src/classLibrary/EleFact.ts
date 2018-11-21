@@ -9,23 +9,23 @@ class EleFact implements ElementFactory {
 		domex.AssertExtend();
 	}
 	
-	CreateSpecialElement(src: string, data: ElementData): HTMLElement {
+	CreateSpecialElement(src: string, data: ElementData = {}): HTMLElement {
 		throw new Error("Not Implemented");
 	}
 	
-	DIV(data: ElementData): HTMLElement {
+	DIV(data: ElementData = {}): HTMLElement {
 		throw new Error("Not Implemented");
 	}
 	
-	ELE(type: string, data: ElementData): HTMLElement {
+	ELE(type: string, data: ElementData = {}): HTMLElement {
 		throw new Error("Not Implemented");
 	}
 	
-	IMG(src: string, data: ElementData): HTMLElement {
+	IMG(src: string, data: ElementData = {}): HTMLElement {
 		throw new Error("Not Implemented");
 	}
 	
-	SPAN(data: ElementData): HTMLElement {
+	SPAN(data: ElementData = {}): HTMLElement {
 		throw new Error("Not Implemented");
 	}
 	
