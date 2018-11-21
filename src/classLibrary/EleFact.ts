@@ -26,11 +26,13 @@ class EleFact implements ElementFactory {
 	}
 	
 	IMG(src: string, data: ElementData = {}): HTMLElement {
-		throw new Error("Not Implemented");
+		let ret: HTMLElement = this.ELE("img", data);
+		ret.Attr("src", src);
+		return ret;
 	}
 	
 	SPAN(data: ElementData = {}): HTMLElement {
-		throw new Error("Not Implemented");
+		return this.ELE("span", data);
 	}
 	
 	

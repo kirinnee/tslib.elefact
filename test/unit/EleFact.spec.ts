@@ -14,6 +14,7 @@ domex.ExtendPrimitives();
 let eleFact: ElementFactory = new EleFact(domex);
 
 describe("EleFact", () => {
+	
 	describe("ELE", () => {
 		
 		it("should create ELE with correct Tag", () => {
@@ -100,6 +101,114 @@ describe("EleFact", () => {
 			innerHTML.tagName.should.be.equal("DIV");
 			withID.tagName.should.be.equal("DIV");
 			withClass.tagName.should.be.equal("DIV");
+			
+		});
+	});
+	
+	describe("SPAN", () => {
+		
+		it("should properly assign ID", () => {
+			let eleClean = eleFact.SPAN({id: "id-1"});
+			let eleClass = eleFact.SPAN({id: "id-2", cls: "blue"});
+			let eleHTML = eleFact.SPAN({id: "id-3", html: "some text"});
+			eleClean.getAttribute("id")!.should.deep.equal('id-1');
+			eleClass.getAttribute("id")!.should.deep.equal('id-2');
+			eleHTML.getAttribute("id")!.should.deep.equal('id-3');
+			
+			eleClean.tagName.should.deep.equal('SPAN');
+			eleClass.tagName.should.deep.equal('SPAN');
+			eleHTML.tagName.should.deep.equal('SPAN');
+			
+			
+		});
+		
+		it("should properly assign class", () => {
+			let assignSingle = eleFact.SPAN({cls: "blue"});
+			let assignMany = eleFact.SPAN({cls: ["blue", "green", "red"]});
+			
+			assignSingle.classList.contains("blue").should.be.true;
+			assignSingle.classList.contains("green").should.be.false;
+			assignSingle.classList.contains("red").should.be.false;
+			assignMany.classList.contains("blue").should.be.true;
+			assignMany.classList.contains("green").should.be.true;
+			assignMany.classList.contains("red").should.be.true;
+			assignSingle.tagName.should.be.equal("SPAN");
+			assignMany.tagName.should.be.equal("SPAN");
+			
+		});
+		
+		it("should properly assign inner HTML", () => {
+			let innerHTML = eleFact.SPAN({html: "some text"});
+			let withID = eleFact.SPAN({html: "some text 2", id: "id-1"});
+			let withClass = eleFact.SPAN({html: "some text 3", cls: "blue"});
+			
+			innerHTML.innerHTML.should.deep.equal("some text");
+			withID.innerHTML.should.deep.equal("some text 2");
+			withClass.innerHTML.should.deep.equal("some text 3");
+			
+			innerHTML.tagName.should.be.equal("SPAN");
+			withID.tagName.should.be.equal("SPAN");
+			withClass.tagName.should.be.equal("SPAN");
+			
+		});
+	});
+	
+	describe("IMG", () => {
+		
+		let src = "https://sophie.moe/images/under_def.png";
+		it("should properly assign ID", () => {
+			let eleClean = eleFact.IMG(src, {id: "id-1"});
+			let eleClass = eleFact.IMG(src, {id: "id-2", cls: "blue"});
+			let eleHTML = eleFact.IMG(src, {id: "id-3", html: "some text"});
+			eleClean.getAttribute("id")!.should.deep.equal('id-1');
+			eleClass.getAttribute("id")!.should.deep.equal('id-2');
+			eleHTML.getAttribute("id")!.should.deep.equal('id-3');
+			
+			eleClean.tagName.should.deep.equal('IMG');
+			eleClass.tagName.should.deep.equal('IMG');
+			eleHTML.tagName.should.deep.equal('IMG');
+			
+			eleClean.getAttribute("src")!.should.deep.equal("https://sophie.moe/images/under_def.png");
+			eleClass.getAttribute("src")!.should.deep.equal("https://sophie.moe/images/under_def.png");
+			eleHTML.getAttribute("src")!.should.deep.equal("https://sophie.moe/images/under_def.png");
+			
+			
+		});
+		
+		it("should properly assign class", () => {
+			let assignSingle = eleFact.IMG(src, {cls: "blue"});
+			let assignMany = eleFact.IMG(src, {cls: ["blue", "green", "red"]});
+			
+			assignSingle.classList.contains("blue").should.be.true;
+			assignSingle.classList.contains("green").should.be.false;
+			assignSingle.classList.contains("red").should.be.false;
+			assignMany.classList.contains("blue").should.be.true;
+			assignMany.classList.contains("green").should.be.true;
+			assignMany.classList.contains("red").should.be.true;
+			assignSingle.tagName.should.be.equal("IMG");
+			assignMany.tagName.should.be.equal("IMG");
+			
+			assignSingle.getAttribute("src")!.should.deep.equal("https://sophie.moe/images/under_def.png");
+			assignMany.getAttribute("src")!.should.deep.equal("https://sophie.moe/images/under_def.png");
+			
+		});
+		
+		it("should properly assign inner HTML", () => {
+			let innerHTML = eleFact.IMG(src, {html: "some text"});
+			let withID = eleFact.IMG(src, {html: "some text 2", id: "id-1"});
+			let withClass = eleFact.IMG(src, {html: "some text 3", cls: "blue"});
+			
+			innerHTML.innerHTML.should.deep.equal("some text");
+			withID.innerHTML.should.deep.equal("some text 2");
+			withClass.innerHTML.should.deep.equal("some text 3");
+			
+			innerHTML.tagName.should.be.equal("IMG");
+			withID.tagName.should.be.equal("IMG");
+			withClass.tagName.should.be.equal("IMG");
+			
+			innerHTML.getAttribute("src")!.should.deep.equal("https://sophie.moe/images/under_def.png");
+			withID.getAttribute("src")!.should.deep.equal("https://sophie.moe/images/under_def.png");
+			withClass.getAttribute("src")!.should.deep.equal("https://sophie.moe/images/under_def.png");
 			
 		});
 	});
