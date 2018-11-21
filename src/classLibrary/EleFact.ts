@@ -19,16 +19,25 @@ class EleFact implements ElementFactory {
 		if (data.id == null) throw new Error("ID cannot be null for special element");
 		let val: string = absolute ? 'absolute' : 'relative';
 		let parent = this.ELE("div", data).Style('position', val);
+		let filter: { ele: Element, id: string } = this.createFilter(data.id);
 		let svgParent = this.xml('svg')
 			.Attr('xmlns', "http://www.w3.org/2000/svg")
 			.Attr('xmlns:xlink', 'http://www.w3.org/1999/xlink');
 		let image = this.xml('image')
 			.Attr('width', '100%')
 			.Attr('height', '100%');
-		let filter: { ele: Element, id: string } = this.createFilter(data.id);
 		
-		parent.Attr('elefact-special-element-filter', filter.id);
-		image.Attr('filter', `url(#${filter.id})`);
+		parent
+			.Attr('elefact-special-element-filter', filter.id);
+		
+		svgParent.Attr('filter', `url(#${filter.id})`)
+			.Style("position", "absolute")
+			.Style("width", "100%")
+			.Style("height", "100%")
+			.Style("top", "0")
+			.Style("left", "0")
+			.Style("overflow:visible");
+		
 		image.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', src);
 		image.Attr('preserveAspectRatio', 'none');
 		parent.Append([svgParent, filter.ele]);

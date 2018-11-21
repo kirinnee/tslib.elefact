@@ -2,7 +2,8 @@ import {IPage} from "./Helper";
 
 let pages :IPage = {
 	chunks: [
-		["index","./src/index.ts"]
+		["index", "./test/e2e/index.ts"],
+		["special", "./test/e2e/special.ts"]
 	],
 	pages: [
 		{
@@ -13,9 +14,9 @@ let pages :IPage = {
 		},
 		{
 			template: "index.html",
-			output: "home.html",
-			chunks: ['index'],
-			title: 'Index'
+			output: "special.html",
+			chunks: ['special'],
+			title: 'Special Element Test'
 		}
 	],
 };
