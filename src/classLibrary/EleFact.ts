@@ -3,7 +3,7 @@ import {ElementData, ElementFactory} from "../index";
 
 class EleFact implements ElementFactory {
 	
-	//private $ : Document = document;
+	private $: Document = document;
 	
 	constructor(domex: DOMEx) {
 		domex.AssertExtend();
@@ -18,7 +18,11 @@ class EleFact implements ElementFactory {
 	}
 	
 	ELE(type: string, data: ElementData = {}): HTMLElement {
-		throw new Error("Not Implemented");
+		let ele: HTMLElement = this.$.createElement(type);
+		if (data.id != null) ele.Id(data.id);
+		if (data.html != null) ele.innerHTML = data.html;
+		if (data.cls != null) ele.AddClass(data.cls);
+		return ele;
 	}
 	
 	IMG(src: string, data: ElementData = {}): HTMLElement {
