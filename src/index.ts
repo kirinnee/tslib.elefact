@@ -7,15 +7,17 @@ interface ElementData {
 }
 
 interface ElementFactory {
-	DIV(data?: ElementData): HTMLElement;
+	Namespace: string;
 	
-	SPAN(data?: ElementData): HTMLElement;
+	DIV(data?: ElementData): Element;
 	
-	IMG(src: string, data?: ElementData): HTMLElement;
+	SPAN(data?: ElementData): Element;
 	
-	ELE(type: string, data?: ElementData): HTMLElement;
+	IMG(src: string, data?: ElementData): Element;
 	
-	CreateSpecialElement(src: string, data?: ElementData): HTMLElement;
+	ELE(type: string, data?: ElementData): Element;
+	
+	CreateSpecialElement(src: string, absolute?: boolean, data?: ElementData): Element;
 }
 
 export {

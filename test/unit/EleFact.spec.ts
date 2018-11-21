@@ -11,15 +11,21 @@ core.ExtendPrimitives();
 let domex: DOMEx = new DOMExtend(core);
 domex.ExtendPrimitives();
 
-let eleFact: ElementFactory = new EleFact(domex);
+let eleFact: ElementFactory = new EleFact(domex, "super-secret");
 
 describe("EleFact", () => {
+	
+	describe("Namespace", () => {
+		it("should return namespace", () => {
+			eleFact.Namespace.should.equal("super-secret");
+		});
+	});
 	
 	describe("ELE", () => {
 		
 		it("should create ELE with correct Tag", () => {
-			let ele1: HTMLElement = eleFact.ELE("img");
-			let ele2: HTMLElement = eleFact.ELE("picture");
+			let ele1: Element = eleFact.ELE("img");
+			let ele2: Element = eleFact.ELE("picture");
 			ele1.tagName.toLowerCase().should.deep.equal("img");
 			ele2.tagName.toLowerCase().should.deep.equal("picture");
 		});
@@ -58,6 +64,10 @@ describe("EleFact", () => {
 	});
 	
 	describe("DIV", () => {
+		
+		it("should return div Tag", () => {
+			eleFact.DIV().tagName.should.equal("DIV");
+		});
 		
 		it("should properly assign ID", () => {
 			let eleClean = eleFact.DIV({id: "id-1"});
@@ -106,6 +116,9 @@ describe("EleFact", () => {
 	});
 	
 	describe("SPAN", () => {
+		it("should return span Tag", () => {
+			eleFact.SPAN().tagName.should.equal("SPAN");
+		});
 		
 		it("should properly assign ID", () => {
 			let eleClean = eleFact.SPAN({id: "id-1"});
@@ -156,6 +169,10 @@ describe("EleFact", () => {
 	describe("IMG", () => {
 		
 		let src = "https://sophie.moe/images/under_def.png";
+		it("should return img Tag", () => {
+			eleFact.IMG(src).tagName.should.equal("IMG");
+		});
+		
 		it("should properly assign ID", () => {
 			let eleClean = eleFact.IMG(src, {id: "id-1"});
 			let eleClass = eleFact.IMG(src, {id: "id-2", cls: "blue"});
@@ -171,8 +188,6 @@ describe("EleFact", () => {
 			eleClean.getAttribute("src")!.should.deep.equal("https://sophie.moe/images/under_def.png");
 			eleClass.getAttribute("src")!.should.deep.equal("https://sophie.moe/images/under_def.png");
 			eleHTML.getAttribute("src")!.should.deep.equal("https://sophie.moe/images/under_def.png");
-			
-			
 		});
 		
 		it("should properly assign class", () => {
@@ -210,6 +225,40 @@ describe("EleFact", () => {
 			withID.getAttribute("src")!.should.deep.equal("https://sophie.moe/images/under_def.png");
 			withClass.getAttribute("src")!.should.deep.equal("https://sophie.moe/images/under_def.png");
 			
+		});
+	});
+	
+	
+	describe("SpecialElement", () => {
+		
+		it("should throw error if no ID is supplied", () => {
+			let x = () => eleFact.CreateSpecialElement("https://sophie.moe/images/under_def.png");
+			x.should.throw("ID cannot be null for special element");
+		});
+		
+		it("should create special element with correct data with absolute", () => {
+			let withID: HTMLElement = eleFact.CreateSpecialElement("https://sophie.moe/images/under_def.png", true, {id: "hey"}) as HTMLElement;
+			let withClass: HTMLElement = eleFact.CreateSpecialElement("https://sophie.moe/images/under_def.png", true, {
+				id: "mega",
+				cls: "yes"
+			}) as HTMLElement;
+			
+			withID.getAttribute("id")!.should.equal("hey");
+			withClass.classList.contains("yes").should.be.true;
+			withID.style.position!.should.equal("absolute");
+			withClass.style.position!.should.equal("absolute");
+		});
+		it("should create special element with correct data with relative", () => {
+			let withID: HTMLElement = eleFact.CreateSpecialElement("https://sophie.moe/images/under_def.png", false, {id: "hey"}) as HTMLElement;
+			let withClass: HTMLElement = eleFact.CreateSpecialElement("https://sophie.moe/images/under_def.png", false, {
+				id: "mega",
+				cls: "yes"
+			}) as HTMLElement;
+			
+			withID.getAttribute("id")!.should.equal("hey");
+			withClass.classList.contains("yes").should.be.true;
+			withID.style.position!.should.equal("relative");
+			withClass.style.position!.should.equal("relative");
 		});
 	});
 	
