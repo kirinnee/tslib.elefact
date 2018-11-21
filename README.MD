@@ -23,6 +23,42 @@ Attach scripts in `dist/` folder
 <script src="./dist/@kirinnee/elefact.min.js"></script>
 ```
 
+# Usage
+
+## Dependency/ Dependency Injection
+
+We use a constructor injection pattern to maintain decoupled code. The 
+following dependency is needed:
+
+- [@kirinnee/core](https://www.npmjs.com/package/@kirinnee/core) 
+- [@kirinnee/domex](https://www.npmjs.com/package/@kirinnee/domex)
+
+To ensure it works crossbrowser, please use [DOM4](https://www.npmjs.com/package/dom4) 
+and [Babel](https://www.npmjs.com/package/@babel/polyfill) polyfill.
+
+
+#### Constructing the Element Factory
+
+```typescript
+//Construct dependencies to prepare for dependecy injectkon
+let core : Core = new Kore();
+core.ExtendPrimitives();
+let domex: DOMEx = new DOMExtend(core);
+domex.ExtendPrimitives();
+//Construct the factory
+let eFact: ElemetFactory = new EleFact(domex, "any-unique-namespace");
+```
+#### Use Factory to Construct Element
+```typescript
+//Create DIV
+let div = eFact.DIV({id:"id",cls:["some-class"]});
+//Create SPAN
+let span = eFact.SPAN({id:"id",cls:["some-class"]});
+//Create IMG
+let img = eFact.IMG("https://path/to/img.png",{id:"id",cls:["some-class"]});
+//Create ELE
+let ele = eFact.ELE("tagName",{id:"id",cls:["some-class"]});
+```
 ## Contributing
 Please read [CONTRIBUTING.md](CONTRIBUTING.MD) for details on our code of conduct, and the process for submitting pull requests to us.
 
