@@ -30,7 +30,7 @@ class EleFact implements ElementFactory {
 		parent
 			.Attr('elefact-special-element-filter', filter.id);
 		
-		svgParent.Attr('filter', `url(#${filter.id})`)
+		svgParent
 			.Style("position", "absolute")
 			.Style("width", "100%")
 			.Style("height", "100%")
@@ -39,7 +39,8 @@ class EleFact implements ElementFactory {
 			.Style("overflow:visible");
 		
 		image.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', src);
-		image.Attr('preserveAspectRatio', 'none');
+		image.Attr('filter', `url(#${filter.id})`)
+			.Attr('preserveAspectRatio', 'none');
 		parent.Append([svgParent, filter.ele]);
 		svgParent.Append(image);
 		return parent;
@@ -75,8 +76,7 @@ class EleFact implements ElementFactory {
 	}
 	
 	private createFilter(id: string): { ele: Element, id: string } {
-		let parent = this.ELE("div")
-			.Style("display", "none");
+		let parent = this.ELE("div");
 		
 		let namespace = this.namespace;
 		
