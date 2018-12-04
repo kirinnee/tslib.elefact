@@ -68,6 +68,10 @@ class EleFact implements ElementFactory {
 		return this.ELE("span", data);
 	}
 	
+	BR(): Element {
+		return document.createElement('br');
+	}
+	
 	private xml(type: string, data: ElementData = {}): SVGElement {
 		let svg: SVGElement = document.createElementNS("http://www.w3.org/2000/svg", type);
 		if (data.id != null) svg.Attr("id", data.id);

@@ -17,6 +17,8 @@ interface ElementFactory {
 	
 	ELE(type: string, data?: ElementData): Element;
 	
+	BR(): Element;
+	
 	CreateSpecialElement(src: string, absolute?: boolean, data?: ElementData): Element;
 }
 

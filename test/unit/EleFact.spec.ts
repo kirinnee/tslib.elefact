@@ -166,6 +166,12 @@ describe("EleFact", () => {
 		});
 	});
 	
+	describe("BR",()=>{
+		it("should return BR element",()=>{
+			eleFact.BR().tagName.should.deep.equal("BR");
+		});
+	});
+	
 	describe("IMG", () => {
 		
 		let src = "https://sophie.moe/images/under_def.png";

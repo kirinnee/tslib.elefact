@@ -17,5 +17,6 @@ $("test-1").Click(() => {
 	let span = eleFact.SPAN({id: "ele2", cls: "span-class", html: "some text 2"});
 	let img = eleFact.IMG("https://s3-ap-southeast-1.amazonaws.com/kirin.static.host/test/book.png", {id: "ele3"});
 	let ele = eleFact.ELE("hr", {id: "ele4"});
-	$("test-target").Append([div, span, img, ele]);
+	let br = eleFact.BR();
+	$("test-target").Append([div, br, span, img, ele]);
 });
