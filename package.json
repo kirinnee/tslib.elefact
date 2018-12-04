@@ -1,6 +1,6 @@
 {
 	"name": "@kirinnee/elefact",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "HTMLElement Factory - simple, lightweight and easy way to create HTMLElement",
 	"main": "index.js",
 	"license": "MIT",
