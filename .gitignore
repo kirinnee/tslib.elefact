@@ -7,3 +7,4 @@ coverage/
 !.idea/*.xml
 .idea/workspace.xml
 .idea/vsc.xml
+index.js
