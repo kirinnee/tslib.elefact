@@ -2,6 +2,10 @@
 
 HTMLElement Factory - simple, lightweight and easy way to create HTMLElement
 
+Source: [GitLab](https://gitlab.com/node-packages-kirin/element-factory)
+
+Mirror: [GitHub](https://github.com/kirinnee/tslib.elefact)
+
 # Getting Started
 
 Install via NPM 
